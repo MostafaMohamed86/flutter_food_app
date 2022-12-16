@@ -5,4 +5,12 @@ class ColorManager{
   static Color darkGrey = const Color(0xFF525252);
   static Color grey = const Color(0xFF737477);
   static Color lightGray = const Color(0xFF9E9E9E);
+
+  // new colors
+  static Color darkPrimary = const Color(0xFFd17d11);
+  static Color lightPrimary = const Color(0xCCd17d11); // color with 80% opacity
+  static Color grey1 = const Color(0xFF707070);
+  static Color grey2 = const Color(0xFF797979);
+  static Color white = const Color(0xFFFFFFFF);
+  static Color error = const Color(0xFFe61f34);
 }
