@@ -3,6 +3,7 @@ import 'package:shopping_app/presentation/forgot_password/forgot_password_view.d
 import 'package:shopping_app/presentation/login/login_view.dart';
 import 'package:shopping_app/presentation/main/main_view.dart';
 import 'package:shopping_app/presentation/register/register_view.dart';
+import 'package:shopping_app/presentation/resources/strings_manager.dart';
 import 'package:shopping_app/presentation/splash/splash_view.dart';
 import 'package:shopping_app/presentation/store_details/store_details_view.dart';
 
@@ -40,9 +41,11 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title: const Text("No Route Found"), // TODO move this string to strings manager
+                // ignore: todo
+                title: const Text(AppStrings.noRouteFound), 
               ),
-              body: const Center(child: Text("No Route Found")), // TODO move this string to strings manager
+              // ignore: todo
+              body: const Center(child: Text(AppStrings.noRouteFound)), 
             ));
   }
 }
