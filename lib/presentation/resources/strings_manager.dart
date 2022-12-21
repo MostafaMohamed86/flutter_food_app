@@ -11,4 +11,6 @@ class AppStrings{
   static const onBoardingSubTitle3 = "The Best Food is made for your taste in food3";
   static const onBoardingSubTitle4 = "The Best Food is made for your taste in food4";
   static const onBoardingSubTitle5 = "The Best Food is made for your taste in food5";
+
+  static const onBoardingSkip = "Skip";
 }
