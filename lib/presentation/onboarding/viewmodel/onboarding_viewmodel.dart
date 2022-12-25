@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:shopping_app/domain/models.dart';
 import 'package:shopping_app/presentation/base/base_view_model.dart';
 import 'package:shopping_app/presentation/resources/assets_manager.dart';
@@ -52,7 +51,6 @@ class OnBoardingViewModel extends BaseViewModel
   
 
   @override
-  // TODO: implement inputsSliderViewObject
   Sink get inputsSliderViewObject => _streamController.sink;
 
   // OnBoarding ViewModel outputs
