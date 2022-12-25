@@ -45,6 +45,7 @@ dependencies:
   build_runner: ^2.3.3
   json_annotation: ^4.7.0
   built_value_generator: ^8.4.2
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
