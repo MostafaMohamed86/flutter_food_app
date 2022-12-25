@@ -17,9 +17,9 @@ class CustomerResponse{
    String? id;
    @JsonKey(name: "name")
    String? name;
-   @JsonKey(name: "numOfNotification")
-   int? numOfNotification;
-   CustomerResponse(this.id, this.name, this.numOfNotification);
+   @JsonKey(name: "numOfNotifications")
+   int? numOfNotifications;
+   CustomerResponse(this.id, this.name, this.numOfNotifications);
 
    factory CustomerResponse.fromJson(Map<String, dynamic> json) => _$CustomerResponseFromJson(json);
 
