@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shopping_app/domain/models.dart';
+import 'package:shopping_app/domain/model/models.dart';
 import 'package:shopping_app/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
 import 'package:shopping_app/presentation/resources/color_manager.dart';
 import 'package:shopping_app/presentation/resources/constants_manager.dart';

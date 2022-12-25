@@ -1,6 +1,6 @@
 import 'package:shopping_app/app/constants.dart';
 import 'package:shopping_app/data/response/responses.dart';
-import 'package:shopping_app/domain/models.dart';
+import 'package:shopping_app/domain/model/models.dart';
 import 'package:shopping_app/app/extensions.dart';
 
 extension CustomerResponseMapper on CustomerResponse? {
