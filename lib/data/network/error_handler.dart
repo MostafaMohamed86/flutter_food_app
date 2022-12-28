@@ -6,6 +6,8 @@ import 'package:shopping_app/data/network/failure.dart';
 class ErrorHandler implements Exception{
   late Failure failure;
 
+  //ErrorHandler(this.failure);
+
   ErrorHandler.handle(dynamic error){
     if(error is DioError){
       failure= _handleError(error);
@@ -25,7 +27,7 @@ Failure _handleError(DioError error){
     case DioErrorType.receiveTimeout:
       return DataSource.RECIEVE_TIMEOUT.getFailure();
     case DioErrorType.response:
-    if(error.response != null && error.response!.statusCode != null && error.response!.statusCode != null){
+    if(error.response != null && error.response!.statusCode != null && error.response!.statusMessage != null){
       return Failure(error.response!.statusCode ?? 0, error.response!.statusMessage ?? "");
     }else{
       return DataSource.DEFAULT.getFailure();
@@ -129,4 +131,9 @@ class ResponseMessage{
   static const String CACHE_ERROR = "Cache error, Try again later";
   static const String NO_INTERNET_CONNECTION = "Please check your internet connection";
   static const String DEFAULT = "Something went wrong, try again later";
+}
+
+class ApiInternalStatus{
+  static const int SUCCESS = 0;
+  static const int FAILURE = 1;
 }
