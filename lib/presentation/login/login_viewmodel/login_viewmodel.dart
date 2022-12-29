@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:shopping_app/presentation/base/base_view_model.dart';
+import 'package:shopping_app/presentation/common/freezed_data_classes.dart';
 
 class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewModelOutputs{
 
   final StreamController _userNameStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
+
+  var loginObject = LoginObject("","");
 
   // inputs
   @override
@@ -27,14 +30,12 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   @override
   setPassword(String password) {
-    // TODO: implement setPassword
-    throw UnimplementedError();
-  }
+    inputPassword.add(password);
+    }
   
   @override
   setUserName(String userName) {
-    // TODO: implement setUserName
-    throw UnimplementedError();
+    inputUserName.add(userName);
   }
   
   @override
