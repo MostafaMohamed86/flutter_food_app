@@ -13,4 +13,11 @@ class AppStrings{
   static const onBoardingSubTitle5 = "The Best Food is made for your taste in food5";
 
   static const onBoardingSkip = "Skip";
+  static const userName = "Username";  
+  static const password = "Password";
+  static const userNameError = "Please enter your username";
+  static const passwordError = "Please enter your password";
+  static const login = "Login";
+  static const forgetPassword = "Forget Password";
+  static const registerText = "Not a member ? Sign up";
 }
