@@ -51,6 +51,7 @@ dependencies:
   shared_preferences: ^0.5.5
   freezed: ^2.3.2
   get_it: ^7.2.0
+  lottie: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,9 @@ flutter:
     - assets/images/onboarding_logo2.svg
     - assets/images/onboarding_logo3.svg
     - assets/images/onboarding_logo4.svg
+    - assets/json/loading.json
+    - assets/json/error.json
+    - assets/json/empty.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
