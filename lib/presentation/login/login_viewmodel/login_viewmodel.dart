@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:shopping_app/domain/usecase/login_usecase.dart';
 import 'package:shopping_app/presentation/base/base_view_model.dart';
 import 'package:shopping_app/presentation/common/freezed_data_classes.dart';
+import 'package:shopping_app/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -22,6 +23,7 @@ class LoginViewModel extends BaseViewModel
   // inputs
   @override
   void dispose() {
+    super.dispose();
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
@@ -29,7 +31,8 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void start() {
-    // TODO: implement start
+    // view model should tell view please show content state
+    inputState.add(ContentState());
   }
 
   @override
