@@ -3,9 +3,9 @@ import 'package:shopping_app/app/di.dart';
 
 import 'app/app.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  initAppModule();
+  await initAppModule();
   runApp(MyApp());
 }
 

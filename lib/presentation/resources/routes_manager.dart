@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/app/di.dart';
-import 'package:shopping_app/presentation/forgot_password/forgot_password_view.dart';
+import 'package:shopping_app/presentation/forgot_password/forgot_password_view/forgot_password_view.dart';
 import 'package:shopping_app/presentation/login/login_view/login_view.dart';
 import 'package:shopping_app/presentation/main/main_view.dart';
 import 'package:shopping_app/presentation/onboarding/view/onboarding_view.dart';
@@ -30,6 +30,7 @@ class RouteGenerator {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
+      initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());

@@ -60,6 +60,7 @@ extension FlowStateExtension on FlowState {
     switch (runtimeType) {
       case LoadingState:
         {
+          // StateRendererType.popupLoadingState
           if (getStateRendererType() == StateRendererType.popupLoadingState) {
             // show popup loading
             showPopup(context, getStateRendererType(), getMessage());

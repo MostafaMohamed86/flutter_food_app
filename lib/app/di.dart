@@ -9,8 +9,12 @@ import 'package:shopping_app/data/network/dio_factory.dart';
 import 'package:shopping_app/data/network/network_info.dart';
 import 'package:shopping_app/data/repository/repository_impl.dart';
 import 'package:shopping_app/domain/repository/repository.dart';
+import 'package:shopping_app/domain/usecase/forgot_password_usecase.dart';
 import 'package:shopping_app/domain/usecase/login_usecase.dart';
+import 'package:shopping_app/presentation/forgot_password/forgot_password_view/forgot_password_view.dart';
 import 'package:shopping_app/presentation/login/login_viewmodel/login_viewmodel.dart';
+
+import '../presentation/forgot_password/forgot_password_viewModel/forgot_password_view_model.dart';
 
 final instance = GetIt.instance;
 
@@ -23,7 +27,8 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
 
   // app prefs instance
-  instance.registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
+  instance
+      .registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
 
   // network info
   instance.registerLazySingleton<NetworkInfo>(
@@ -51,5 +56,14 @@ initLoginModule() {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+initForgotPasswordModule() {
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    instance.registerFactory<ForgotPasswordUseCase>(
+        () => ForgotPasswordUseCase(instance()));
+    instance.registerFactory<ForgotPasswordViewModel>(
+        () => ForgotPasswordViewModel(instance()));
   }
 }

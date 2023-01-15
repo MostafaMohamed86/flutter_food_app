@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:shopping_app/domain/usecase/login_usecase.dart';
 import 'package:shopping_app/presentation/base/base_view_model.dart';
 import 'package:shopping_app/presentation/common/freezed_data_classes.dart';
+import 'package:shopping_app/presentation/common/state_renderer/state_renderer.dart';
 import 'package:shopping_app/presentation/common/state_renderer/state_renderer_impl.dart';
+import 'package:shopping_app/presentation/resources/strings_manager.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -13,6 +15,7 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _areAllInputsValidStreamController =
       StreamController<void>.broadcast();
+  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>();   
 
   var loginObject = LoginObject("", "");
 
@@ -27,6 +30,7 @@ class LoginViewModel extends BaseViewModel
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
@@ -43,8 +47,6 @@ class LoginViewModel extends BaseViewModel
 
   @override
   Sink get inputAreAllInputsValid => _areAllInputsValidStreamController.sink;
-  
- 
 
   @override
   setPassword(String password) {
@@ -52,7 +54,6 @@ class LoginViewModel extends BaseViewModel
     loginObject = loginObject.copyWith(password: password);
     inputAreAllInputsValid.add(null);
   }
-  
 
   @override
   setUserName(String userName) {
@@ -63,13 +64,20 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    (await _loginUseCase.execute(
+    inputState
+        .add(LoadingState(
+            stateRendererType: StateRendererType.popupLoadingState));
+        (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.userName, loginObject.password)))
         .fold((failure) => {
-
-        }, (data) => {
-          print(data.customer?.name)
-
+          // left -> failure
+          inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message))
+        }, (data) {
+          // right -> data (success)
+          // content
+          inputState.add(ContentState());
+          // navigate to main screen
+          isUserLoggedInSuccessfullyStreamController.add(true);
         });
   }
 
@@ -82,9 +90,10 @@ class LoginViewModel extends BaseViewModel
   Stream<bool> get outIsUserNameValid => _userNameStreamController.stream
       .map((userName) => _isUserNameValid(userName));
 
-   @override
-  Stream<bool> get outAreAllInputsValid => _areAllInputsValidStreamController.stream.map((_) => _areAllInputsValid());    
-
+  @override
+  Stream<bool> get outAreAllInputsValid =>
+      _areAllInputsValidStreamController.stream
+          .map((_) => _areAllInputsValid());
 
   bool _isPasswordValid(String password) {
     return password.isNotEmpty;
@@ -94,11 +103,10 @@ class LoginViewModel extends BaseViewModel
     return userName.isNotEmpty;
   }
 
-  bool _areAllInputsValid(){
-    return _isPasswordValid(loginObject.password) && _isUserNameValid(loginObject.userName);
+  bool _areAllInputsValid() {
+    return _isPasswordValid(loginObject.password) &&
+        _isUserNameValid(loginObject.userName);
   }
-  
-  
 }
 
 abstract class LoginViewModelInputs {
